@@ -13,7 +13,7 @@ export CUDA_VISIBLE_DEVICES=0
 python finetune.py \
   --model_name_or_path $MODEL \
   --data_path $DATA \
-  --bf16 True \
+  --fp16 True \
   --output_dir output_qwen \
   --num_train_epochs 5 \
   --per_device_train_batch_size 2 \
