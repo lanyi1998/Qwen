@@ -6,7 +6,7 @@ DIR=`pwd`
 MODEL="Qwen/Qwen-7B-Chat-Int4" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-DATA="./data"
+DATA="./data/1.json"
 
 export CUDA_VISIBLE_DEVICES=0
 
