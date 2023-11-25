@@ -12,7 +12,7 @@ import shutil
 from copy import deepcopy
 from peft import AutoPeftModelForCausalLM
 import torch
-from modelscope import AutoModelForCausalLM, AutoTokenizer
+from modelscope import AutoTokenizer
 from modelscope import GenerationConfig
 from transformers.trainer_utils import set_seed
 
@@ -43,7 +43,7 @@ Commands:
 
 def _load_model_tokenizer(args):
     tokenizer = AutoTokenizer.from_pretrained(
-        "./output_qwen", trust_remote_code=True, resume_download=True,
+        args.checkpoint_path, trust_remote_code=True, resume_download=True,
     )
 
     if args.cpu_only:
@@ -57,7 +57,7 @@ def _load_model_tokenizer(args):
     trust_remote_code=True).eval()
 
     config = GenerationConfig.from_pretrained(
-        "./output_qwen", trust_remote_code=True, resume_download=True,
+        args.checkpoint_path, trust_remote_code=True, resume_download=True,
     )
 
     return model, tokenizer, config
