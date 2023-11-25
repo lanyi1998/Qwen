@@ -50,7 +50,7 @@ def _load_model_tokenizer(args):
 
     model = AutoPeftModelForCausalLM.from_pretrained(
     "./output_qwen", # path to the output directory
-    device_map=device_map",
+    device_map=device_map,
     trust_remote_code=True).eval()
 
     config = GenerationConfig.from_pretrained(
