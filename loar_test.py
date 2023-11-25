@@ -13,7 +13,7 @@ import mdtex2html
 
 import torch
 from modelscope import AutoModelForCausalLM, AutoTokenizer
-from modelscope.generation import GenerationConfig
+from transformers.generation import GenerationConfig
 
 
 DEFAULT_CKPT_PATH = 'Qwen/Qwen-7B-Chat-Int4'
