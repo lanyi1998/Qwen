@@ -1,12 +1,3 @@
-from peft import AutoPeftModelForCausalLM
-
-model = AutoPeftModelForCausalLM.from_pretrained(
-    "./output_qwen", # path to the output directory
-    device_map="auto",
-    trust_remote_code=True
-).eval()
-
-
 # Copyright (c) Alibaba Cloud.
 #
 # This source code is licensed under the license found in the
@@ -14,17 +5,18 @@ model = AutoPeftModelForCausalLM.from_pretrained(
 
 """A simple web interactive chat demo based on gradio."""
 import os
+from peft import AutoPeftModelForCausalLM
 from argparse import ArgumentParser
 
 import gradio as gr
 import mdtex2html
 
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from modelscope import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 
 
-DEFAULT_CKPT_PATH = 'Qwen/Qwen-7B-Chat'
+DEFAULT_CKPT_PATH = 'Qwen/Qwen-7B-Chat-Int4'
 
 
 def _get_args():
