@@ -10,7 +10,7 @@ import os
 import platform
 import shutil
 from copy import deepcopy
-
+from peft import AutoPeftModelForCausalLM
 import torch
 from modelscope import AutoModelForCausalLM, AutoTokenizer
 from modelscope import GenerationConfig
