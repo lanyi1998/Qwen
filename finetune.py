@@ -12,6 +12,7 @@ from torch.utils.data import Dataset
 from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
 import transformers
+import modelscope
 from transformers import Trainer, GPTQConfig, deepspeed
 from transformers.trainer_pt_utils import LabelSmoother
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
@@ -289,7 +290,7 @@ def train():
             )
 
     # Set RoPE scaling factor
-    config = transformers.AutoConfig.from_pretrained(
+    config = modelscope.AutoConfig.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
         trust_remote_code=True,
@@ -297,7 +298,7 @@ def train():
     config.use_cache = False
 
     # Load model and tokenizer
-    model = transformers.AutoModelForCausalLM.from_pretrained(
+    model = modelscope.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         config=config,
         cache_dir=training_args.cache_dir,
@@ -309,7 +310,7 @@ def train():
         if training_args.use_lora and lora_args.q_lora
         else None,
     )
-    tokenizer = transformers.AutoTokenizer.from_pretrained(
+    tokenizer = modelscope.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
         model_max_length=training_args.model_max_length,
